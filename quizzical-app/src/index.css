@@ -1,0 +1,47 @@
+body {
+  color: #293264; 
+  margin: 0;
+  font-family: 'Karla';
+  font-style: normal; 
+  font-weight: 700;
+  display: flex; 
+  justify-content: center; 
+}
+
+
+button {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 11px; 
+  border: none; 
+  border-radius: 10px; 
+  color: #F5F7FB; 
+  background-color: #4D5B9E;
+  width: 120px; 
+  height: 35px; 
+}
+
+.start--page {
+  max-width: 900px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  margin: 80% 0%; 
+  border: 1px solid salmon; 
+}
+.start--page * {
+  text-align: center; 
+}
+.start--page > h1 {
+  font-size: 32px; 
+  margin-bottom: 7px; 
+}
+
+.start--page > button {
+  width: 193px; 
+  height: 52px; 
+  border-radius: 15px; 
+  font-weight: 500; 
+  font-size: 16px;
+  margin-top: 30px; 
+}
