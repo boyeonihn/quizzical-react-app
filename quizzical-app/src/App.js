@@ -11,6 +11,7 @@ function App() {
     setQuizMode(true); 
     console.log(quizMode)
   }
+  
   return (
     <div>
       {!quizMode &&<Start startQuiz={startQuiz}/>}
