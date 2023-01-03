@@ -9,15 +9,14 @@ export default function Quiz(){
             .then(res => res.json())
             .then(data => setQuestionsData(data.results))
     }, [])
-    // correct answer is stored in data.results[INDEX].correct_answer and incorrect answer is stored in data.results[INDEX].incorrect_answer 
-
-    // somehow figure out how to mix the order of the answer choices; 
     
-    // first just pull out the QUESTIONS only from the data
-    const questions = questionsData.map( question => <Question question={question.question} answer={question.correct_answer} otherChoices={question.incorrect_answers} />)
+    // combine the answer choices in one array 
+    const answerChoicesArray = questionsData.map( question => [...question.incorrect_answers, question.correct_answer]);
+    // map over the questions to create Question component
+    const questions = questionsData.map( (question, index) => <Question question={question.question} allChoices={answerChoicesArray[index]} answer={question.correct_answer}/>)
+    
     return (
-        <section>
-            <pre>{JSON.stringify(questionsData, null, 2)}</pre>
+        <section className="quiz--content">
             {questions}
             <button>Check Answers</button>
         </section>

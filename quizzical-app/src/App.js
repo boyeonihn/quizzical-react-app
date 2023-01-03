@@ -7,9 +7,7 @@ function App() {
   const [quizMode, setQuizMode] = React.useState(false); 
 
   function startQuiz(){
-    console.log(`what is up!`); 
     setQuizMode(true); 
-    console.log(quizMode)
   }
   
   return (
