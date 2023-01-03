@@ -2,6 +2,7 @@ import React from "react";
 import './App.css';
 import Start from './Components/Start';
 import Quiz from './Components/Quiz'; 
+import {nanoid} from "nanoid"; 
 
 function App() {
   const [quizMode, setQuizMode] = React.useState(false); 

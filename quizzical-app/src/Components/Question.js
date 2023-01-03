@@ -1,7 +1,9 @@
 import React from "react";
+import AnswerChoice from './AnswerChoice'; 
+import {nanoid} from "nanoid";
 
 export default function Question(props){
-    // let [answerChoices, setAnswerChoices] = React.useState(selectAnswer());
+    const [answerChoices, setAnswerChoices] = React.useState(shuffledChoices); 
 
     function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -11,17 +13,28 @@ export default function Question(props){
         return array; 
     }
 
-    const shuffledChoices = shuffle(props.allChoices);
+    function shuffledChoices() {
+        const shuffledArray = shuffle(props.allChoices);
+        let choicesArray = [];
 
+        for (let i = 0; i < shuffledArray.length; i++) {
+            choicesArray.push({
+                choice: shuffledArray[i],
+                id: nanoid(),
+                isSelected: false,
+                isAnswer: shuffledArray[i] === props.answer ? true : false 
+            })
+        }
+        return choicesArray; 
+    }
+
+    const answerElements = answerChoices.map( answer => (
+        <AnswerChoice key={answer.id} value={answer.choice} isSelected={answer.isSelected} id={answer.id} isAnswer={answer.isAnswer} />
+    ))
     return (
         <div>
             <h2>{props.question}</h2>
-            <div className="question-choicesBox">
-                <p className="question--choice" onClick={(event) => props.chooseOption(event)}>{shuffledChoices[0]}</p>
-                <p className="question--choice" onClick={(event) => props.chooseOption(event)}>{shuffledChoices[1]}</p>
-                <p className="question--choice" onClick={(event) => props.chooseOption(event)}>{shuffledChoices[2]}</p>
-                <p className="question--choice" onClick={(event) => props.chooseOption(event)}>{shuffledChoices[3]}</p>
-            </div>
+            {answerElements}
         </div>
     )
 }
