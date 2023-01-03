@@ -2,10 +2,10 @@ import React from "react";
 
 export default function AnswerChoice(props) {
     const styles = {
-        backgroundColor: props.isSelected ? 'blue' : 'white'
+        backgroundColor: props.isSelected ? '#89CFF0' : 'white'
     }
 
     return (
-       <p className="question--choice">{props.value}</p>
+       <p className="question--choice" style={styles} onClick={props.selectAnswer}>{props.value}</p>
     )
 }

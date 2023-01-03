@@ -28,8 +28,25 @@ export default function Question(props){
         return choicesArray; 
     }
 
+    function selectAnswer(id){
+        console.log(id)
+        setAnswerChoices( oldAnswerChoices => oldAnswerChoices.map(
+            answerChoice => {
+                 return answerChoice.id == id ? 
+                 {...answerChoice, isSelected: !answerChoice.isSelected}
+                 : {...answerChoice, isSelected: false}
+            }
+        ))
+        console.log(answerChoices)
+      }
+
     const answerElements = answerChoices.map( answer => (
-        <AnswerChoice key={answer.id} value={answer.choice} isSelected={answer.isSelected} id={answer.id} isAnswer={answer.isAnswer} />
+        <AnswerChoice 
+            key={answer.id} 
+            value={answer.choice} 
+            isSelected={answer.isSelected}
+            isAnswer={answer.isAnswer} 
+            selectAnswer={() => selectAnswer(answer.id)} />
     ))
     return (
         <div>

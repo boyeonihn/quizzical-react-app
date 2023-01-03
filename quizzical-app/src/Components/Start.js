@@ -1,6 +1,7 @@
 import React from "react"
 
 export default function(props) {
+
     return (
         <section className="start--page">
             <h1>Quizzical</h1>
