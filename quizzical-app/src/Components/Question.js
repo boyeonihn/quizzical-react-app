@@ -51,7 +51,9 @@ export default function Question(props){
     return (
         <div>
             <h2>{props.question}</h2>
-            {answerElements}
+            <div className="choices--box">
+                {answerElements}
+            </div>
         </div>
     )
 }

@@ -9,6 +9,9 @@ body {
   justify-content: center; 
 }
 
+.app--container {
+  padding: 5%; 
+}
 
 button {
   font-family: 'Inter';
@@ -47,7 +50,7 @@ button {
   margin-top: 30px; 
 }
 
-.question-choicesBox {
+.choices--box {
   display: flex; 
 }
 .question--choice {

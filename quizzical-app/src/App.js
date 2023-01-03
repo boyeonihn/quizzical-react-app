@@ -12,7 +12,7 @@ function App() {
   }
   
   return (
-    <div>
+    <div className="app--container">
       {!quizMode &&<Start startQuiz={startQuiz}/>}
       {quizMode && <Quiz />}
     </div>
