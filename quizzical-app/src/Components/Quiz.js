@@ -2,6 +2,7 @@ import React from "react"
 import Question from "./Question"; 
 
 export default function Quiz(props){
+    const [resultMode, setResultMode] = React.useState(false); 
     const [questionsData, setQuestionsData] = React.useState([]);
 
     React.useEffect(() => {
@@ -10,8 +11,12 @@ export default function Quiz(props){
             .then(data => setQuestionsData(data.results))
     }, [])
 
-    console.log(questionsData)
-    
+    function showResult() {
+        setResultMode(oldValue => !oldValue); 
+        console.log(resultMode)
+        return resultMode; 
+    }
+
     // combine the answer choices in one array 
     const answerChoicesArray = questionsData.map( question => [...question.incorrect_answers, question.correct_answer]);
     
@@ -37,7 +42,7 @@ export default function Quiz(props){
     return (
         <section className="quiz--content">
             {questions}
-            <button>Check Answers</button>
+            <button onClick={showResult}>{resultMode ? 'Play Again' : 'Check Answers'}</button>
         </section>
     )
 }
