@@ -29,7 +29,6 @@ export default function Question(props){
     }
 
     function selectAnswer(id){
-        console.log(id)
         setAnswerChoices( oldAnswerChoices => oldAnswerChoices.map(
             answerChoice => {
                  return answerChoice.id == id ? 
@@ -37,8 +36,7 @@ export default function Question(props){
                  : {...answerChoice, isSelected: false}
             }
         ))
-        console.log(answerChoices)
-      }
+    }
 
     const answerElements = answerChoices.map( answer => (
         <AnswerChoice 
@@ -46,13 +44,16 @@ export default function Question(props){
             value={answer.choice} 
             isSelected={answer.isSelected}
             isAnswer={answer.isAnswer} 
-            selectAnswer={() => selectAnswer(answer.id)} />
+            selectAnswer={() => selectAnswer(answer.id)}
+            resultMode={props.resultMode} />
     ))
+
+
     return (
         <div>
             <h2>{props.question}</h2>
             <div className="choices--box">
-                {answerElements}
+            {answerElements}
             </div>
         </div>
     )
