@@ -5,14 +5,15 @@ export default function Quiz(props){
     const [resultMode, setResultMode] = React.useState(false); 
     const [questionsData, setQuestionsData] = React.useState([]);
     const [newGame, setNewGame] = React.useState(false);
-    const [score, setScore] = React.useState(0)
-
+    const [score, setScore] = React.useState(0);
+    
     React.useEffect(() => {
         fetch("https://opentdb.com/api.php?amount=5&category=20&type=multiple")
             .then(res => res.json())
             .then(data => setQuestionsData(data.results))
     }, [newGame])
 
+    console.log(questionsData)
     function turnResultMode() {
         setResultMode(oldValue => !oldValue); 
         return resultMode; 
@@ -22,7 +23,7 @@ export default function Quiz(props){
         setNewGame(oldGameStatus => !oldGameStatus)
         setResultMode(false)
     }
-    
+
     // combine the answer choices in one array 
     const answerChoicesArray = questionsData.map( question => [...question.incorrect_answers, question.correct_answer] );
     
@@ -42,6 +43,7 @@ export default function Quiz(props){
             return targetQuestion
         }
     })
+
     // map over the questions to create Question component
     const questions = questionsData.map( (question, index) => 
         <Question 
@@ -50,6 +52,7 @@ export default function Quiz(props){
             answer={question.correct_answer} 
             key={index}
             resultMode={resultMode}/>)
+    console.log(questions); 
     
     return (
         <section className="quiz--content">

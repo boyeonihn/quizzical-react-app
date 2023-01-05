@@ -3,10 +3,11 @@ import AnswerChoice from './AnswerChoice';
 import {nanoid} from "nanoid";
 
 export default function Question(props){
-    const [answerChoices, setAnswerChoices] = React.useState(shuffledChoices); 
+    const [answerChoices, setAnswerChoices] = React.useState(shuffledChoices(props.allChoices)); 
 
+    console.log(props.question, props.allChoices, answerChoices)
+    
     function shuffle(array) {
-        console.log('shuffled')
         for (let i = array.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * (i + 1));
           [array[i], array[j]] = [array[j], array[i]];
@@ -14,11 +15,13 @@ export default function Question(props){
         return array; 
     }
 
-    function shuffledChoices() {
-        const shuffledArray = shuffle(props.allChoices);
+    function shuffledChoices(array) {
+        const shuffledArray = shuffle(array);
+        console.log(`shuffledArray is ${shuffledArray} for ${props.question}`)
         let choicesArray = [];
 
         for (let i = 0; i < shuffledArray.length; i++) {
+            console.log(shuffledArray[i])
             choicesArray.push({
                 choice: shuffledArray[i],
                 id: nanoid(),
