@@ -6,6 +6,7 @@ export default function Question(props){
     const [answerChoices, setAnswerChoices] = React.useState(shuffledChoices); 
 
     function shuffle(array) {
+        console.log('shuffled')
         for (let i = array.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * (i + 1));
           [array[i], array[j]] = [array[j], array[i]];

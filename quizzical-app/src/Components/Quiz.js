@@ -6,6 +6,7 @@ export default function Quiz(props){
     const [resultMode, setResultMode] = React.useState(false); 
     const [questionsData, setQuestionsData] = React.useState([]);
     const [newGame, setNewGame] = React.useState(false);
+    const [correctScore, setCorrectScore] = React.useState(0)
 
     React.useEffect(() => {
         fetch("https://opentdb.com/api.php?amount=5&category=20&type=multiple")
@@ -19,7 +20,8 @@ export default function Quiz(props){
     }
 
     function getNewGame(){
-        setNewGame(true)
+        setNewGame(oldGameStatus => !oldGameStatus)
+        setResultMode(false)
     }
 
     // combine the answer choices in one array 
@@ -53,7 +55,7 @@ export default function Quiz(props){
     return (
         <section className="quiz--content">
             {questions}
-            {resultMode && <p>You scored 3/5 correct answers</p>}
+            {resultMode && <p>You scored {correctScore}/5 correct answers</p>}
             {resultMode && <button onClick={getNewGame}>Play Again</button>}
             {!resultMode && <button onClick={turnResultMode}>Check Answers</button>}
 
