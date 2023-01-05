@@ -1,11 +1,22 @@
 import React from "react";
 
 export default function AnswerChoice(props) {
-    const styles = {
-        backgroundColor: props.isSelected ? '#89CFF0' : 'white'
+    console.log(props.isSelected, props.isAnswer)
+    let backgroundColor = ''; 
+    if (!props.resultMode && props.isSelected) {
+        backgroundColor = '#89CFF0'
+    } 
+    else if (props.resultMode && props.isSelected && props.isAnswer) {
+        backgroundColor = 'green'; 
+    }
+    else if (props.resultMode && props.isSelected && !props.isAnswer) {
+        backgroundColor = 'red'; 
+    } else {
+        backgroundColor = ''; 
     }
 
+
     return (
-       <p className="question--choice" style={styles} onClick={props.selectAnswer}>{props.value}</p>
+       <p className="question--choice" style={{backgroundColor: backgroundColor}} onClick={props.selectAnswer}>{props.value}</p>
     )
 }

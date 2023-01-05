@@ -6,6 +6,7 @@ export default function Question(props){
     const [answerChoices, setAnswerChoices] = React.useState(shuffledChoices); 
 
     function shuffle(array) {
+        console.log('shuffled')
         for (let i = array.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * (i + 1));
           [array[i], array[j]] = [array[j], array[i]];
@@ -29,16 +30,14 @@ export default function Question(props){
     }
 
     function selectAnswer(id){
-        console.log(id)
         setAnswerChoices( oldAnswerChoices => oldAnswerChoices.map(
             answerChoice => {
-                 return answerChoice.id == id ? 
+                 return answerChoice.id === id ? 
                  {...answerChoice, isSelected: !answerChoice.isSelected}
                  : {...answerChoice, isSelected: false}
             }
         ))
-        console.log(answerChoices)
-      }
+    }
 
     const answerElements = answerChoices.map( answer => (
         <AnswerChoice 
@@ -46,13 +45,15 @@ export default function Question(props){
             value={answer.choice} 
             isSelected={answer.isSelected}
             isAnswer={answer.isAnswer} 
-            selectAnswer={() => selectAnswer(answer.id)} />
+            selectAnswer={() => selectAnswer(answer.id)}
+            resultMode={props.resultMode} />
     ))
+
     return (
         <div>
             <h2>{props.question}</h2>
             <div className="choices--box">
-                {answerElements}
+            {answerElements}
             </div>
         </div>
     )
