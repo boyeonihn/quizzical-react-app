@@ -22,7 +22,7 @@ export default function Quiz(props){
         setNewGame(oldGameStatus => !oldGameStatus)
         setResultMode(false)
     }
-
+    
     // combine the answer choices in one array 
     const answerChoicesArray = questionsData.map( question => [...question.incorrect_answers, question.correct_answer] );
     
