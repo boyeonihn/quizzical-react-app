@@ -3,7 +3,11 @@ import AnswerChoice from './AnswerChoice';
 import {nanoid} from "nanoid";
 
 export default function Question(props){
-    const [answerChoices, setAnswerChoices] = React.useState(shuffledChoices); 
+    const [answerChoices, setAnswerChoices] = React.useState(shuffledChoices()); 
+
+    React.useEffect(() => {
+        setAnswerChoices(shuffledChoices())
+    }, [props.answerChoices])
 
     function shuffle(array) {
         console.log('shuffled')
@@ -14,6 +18,7 @@ export default function Question(props){
         return array; 
     }
 
+    console.log(answerChoices, props.allChoices, props.question, )
     function shuffledChoices() {
         const shuffledArray = shuffle(props.allChoices);
         let choicesArray = [];
