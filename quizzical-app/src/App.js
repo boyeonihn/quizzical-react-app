@@ -3,6 +3,7 @@ import './App.css';
 import Start from './Components/Start';
 import Quiz from './Components/Quiz'; 
 import Question from './Components/Question';
+import { nanoid } from "nanoid";
 
 function App() {
   const [quizMode, setQuizMode] = React.useState(false); 
@@ -26,22 +27,66 @@ function App() {
     })
   }
 
-  React.useEffect(() => {
-    const questionsDataCleaned = questionsJSONData.map( question => {
-      return {
-        targetQuestion: question.question,
-        correctAnswer: question.correct_answer,
-        incorrectAnswer: question.incorrect_answers,
-        allChoices: [...question.incorrect_answers, question.correct_answer]
-      }
-    });
-    setQuestionUnits(questionsDataCleaned)
-  }, [questionsJSONData])
-
   function turnResultMode() {
     setResultMode(oldValue => !oldValue); 
     return resultMode; 
   }
+
+  function shuffle(array) {
+    console.log('shuffled')
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array; 
+  }
+  
+  function createQuestionUnit(){
+    const questionsDataCleaned = questionsJSONData.map( question => {
+      const answersArray = [...question.incorrect_answers, question.correct_answer];
+      const shuffledAnswers = shuffle(answersArray); 
+      let choicesArray = [];
+
+      for (let i = 0; i < shuffledAnswers.length; i++) {
+          choicesArray.push({
+              choice: shuffledAnswers[i],
+              id: nanoid(),
+              isSelected: false
+          })
+      }
+
+      return {
+        targetQuestion: question.question,
+        correctAnswer: question.correct_answer,
+        // incorrectAnswer: question.incorrect_answers,
+        allAnswerChoices: shuffledAnswers,
+        answerChoicesObject: choicesArray
+      }
+    });
+
+    setQuestionUnits(questionsDataCleaned); 
+  }
+
+  // Create Question Component Map
+  const questionComponents = questionUnits.map( (questionUnit, index) => 
+    <Question 
+      key={index}
+      targetQuestion={questionUnit.targetQuestion} 
+      correctAnswer={questionUnit.correctAnswer} 
+      answerChoicesObject={questionUnit.answerChoicesObject}
+      allAnswerChoices={questionUnit.allAnswerChoices}
+      changeAnswerChoice={setQuestionUnits}
+      resultMode={resultMode}
+    /> );
+  
+  console.log(questionComponents); 
+
+
+  React.useEffect(() => {
+    createQuestionUnit();
+  }, [questionsJSONData])
+
+
 
   return (
     <div className="app--container">
@@ -49,6 +94,7 @@ function App() {
       {quizMode ? 
         <section className="quiz--content">
           <h1>Mythology Quizzical</h1>
+          {questionComponents}
           {resultMode && <p>You scored {score}/5 correct answers</p>}
           {resultMode && <button onClick={getNewGame}>Play Again</button>}
           {!resultMode && <button onClick={turnResultMode}>Check Answers</button>}
