@@ -1,9 +1,7 @@
 import React from "react";
 import './App.css';
 import Start from './Components/Start';
-import Quiz from './Components/Quiz'; 
 import Question from './Components/Question';
-import { nanoid } from "nanoid";
 
 function App() {
   const [quizMode, setQuizMode] = React.useState(false); 
@@ -49,18 +47,14 @@ function App() {
 
       for (let i = 0; i < shuffledAnswers.length; i++) {
           choicesArray.push({
-              choice: shuffledAnswers[i],
-              id: nanoid(),
-              isSelected: false
+              choice: shuffledAnswers[i]
           })
       }
 
       return {
         targetQuestion: question.question,
         correctAnswer: question.correct_answer,
-        // incorrectAnswer: question.incorrect_answers,
-        allAnswerChoices: shuffledAnswers,
-        answerChoicesObject: choicesArray
+        allAnswerChoices: choicesArray
       }
     });
 
@@ -73,15 +67,10 @@ function App() {
       key={index}
       targetQuestion={questionUnit.targetQuestion} 
       correctAnswer={questionUnit.correctAnswer} 
-      answerChoicesObject={questionUnit.answerChoicesObject}
       allAnswerChoices={questionUnit.allAnswerChoices}
-      changeAnswerChoice={setQuestionUnits}
       resultMode={resultMode}
     /> );
   
-  console.log(questionComponents); 
-
-
   React.useEffect(() => {
     createQuestionUnit();
   }, [questionsJSONData])
