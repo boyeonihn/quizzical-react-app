@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Quizzical React App
+## About the Project
+**Link to project:** https://glowing-moonbeam-1668fc.netlify.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- A Quizzical Web App that presents 5 multiple-choice trivia questions on Mythology that range in terms of difficulty (easy, medium, hard). 
+- This was the final solo project required to complete as part of Scrimba's [React course](https://scrimba.com/learn/learnreact). A Figma design file was provided to present the design and functional requirements of the app, and the app was created from scratch.
 
-## Available Scripts
+## How It's Made:
+**Tech used:** Javascript, React, React Hooks (i.e., useEffect, useState), HTML, CSS
 
-In the project directory, you can run:
+I built this Quizzical web app by utilizing the [Open Trivia Database API](https://opentdb.com/). The following Quizzical app features several functions:
+- A main "start" page, which then transitions to the quiz page once "start" button is clicked
+- The quiz generates five multiple choice trivia questions on Mythology
+- Once the user clicks on an answer choice, this is denoted by a change in color rendering
+- Upon submitting the answers, the web app presents questions that were answered correctly and incorrectly 
 
-### `npm start`
+## Lessons Learned:
+### Manipulating the data received from the Open Trivia Database API:
+- The original data received from the API contained special characters such as ?, &, " that were not displaying correctly upon App rendering. Upon some browsing and searching on the internet, 
+- Furthermore, the API data was formatted so that each question had a 'correct_answer' and 'incorrect_answers' property. In order to prevent all the questions from having the first option as the same answer (i.e. all the questions' correct answer being option A), I completed two steps. Firstly, I combined the 'correct_answer' and 'incorrect_answers' values in one array. Then, utilizing a shuffle function, I made sure each question had a different shuffled order of answer choices. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Other lessons learned
+- The importance of including a dependency array within the useEffect hook to prevent a function from running on an infinite loop
+- Making sure I create git commits in smaller, manageable units with clear and concise messages so that when I need to revert or reset to a previous commit, I know exactly where to look
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Optimizations
+Once I have more time beyond my current projects, I would like to work on the following to optimize my app: 
+- Make the overall design more responsive across different browser devices
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Examples:
+Take a look at these couple examples that I have in my own portfolio:
 
-### `npm run build`
+**LUNA LOGISTICS:** https://github.com/boyeonihn/luna-logistics-website
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Dog Wisdoms:** https://relaxed-entremet-c40b40.netlify.app/
