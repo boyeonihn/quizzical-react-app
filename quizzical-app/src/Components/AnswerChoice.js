@@ -3,9 +3,9 @@ import React from "react";
 export default function AnswerChoice(props) {
     let backgroundColor = ''; 
 
-    const isAnswerCorrect = props.userChoice == props.correctAnswer 
-    const isSelected = props.userChoice == props.value; 
-    const correctAnswer = props.value == props.correctAnswer; 
+    const isAnswerCorrect = props.userChoice === props.correctAnswer 
+    const isSelected = props.userChoice === props.value; 
+    const correctAnswer = props.value === props.correctAnswer; 
     
     if (!props.resultMode && isSelected) {
         backgroundColor = '#D6DBF5'

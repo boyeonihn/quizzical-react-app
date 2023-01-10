@@ -9,7 +9,7 @@ function App() {
   const [resultMode, setResultMode] = React.useState(false); 
   const [questionUnits, setQuestionUnits] = React.useState([]);
   const [score, setScore] = React.useState(0); 
- 
+
   function startQuiz(){
     setQuizMode(true); 
     getNewGame(); 
@@ -21,7 +21,7 @@ function App() {
     .then((data) => {
       setQuestionsJSONData(data.results);
       setResultMode(false);
-      console.log('this has been completed')
+      setScore(0); 
     })
   }
 
@@ -31,7 +31,6 @@ function App() {
   }
 
   function shuffle(array) {
-    console.log('shuffled')
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
@@ -75,16 +74,13 @@ function App() {
     createQuestionUnit();
   }, [questionsJSONData])
 
-
-
   return (
     <div className="app--container">
       {!quizMode && <Start startQuiz={startQuiz} />}
       {quizMode ? 
         <section className="quiz--content">
-          <h1>Mythology Quizzical</h1>
           {questionComponents}
-          {resultMode && <p>You scored {score}/5 correct answers</p>}
+          {/* {resultMode && <p>You scored {score}/5 correct answers</p>} */}
           {resultMode && <button onClick={getNewGame}>Play Again</button>}
           {!resultMode && <button onClick={turnResultMode}>Check Answers</button>}
         </section> : ''

@@ -3,7 +3,8 @@ import AnswerChoice from './AnswerChoice';
 
 export default function Question(props){
     const [userChoice, setUserChoice] = React.useState(); 
-    const correctAnswer = props.correctAnswer;
+    const correctAnswer = props.correctAnswer; 
+    let tally = 0; 
     const answerElements = props.allAnswerChoices.map( answer => (
         <AnswerChoice 
             key={answer.choice} 
@@ -16,6 +17,11 @@ export default function Question(props){
 
     function selectAnswer(choice){
         setUserChoice(choice)
+    }
+
+    if (props.resultMode && userChoice === correctAnswer) {
+        tally += 1; 
+        console.log(`tally is ${tally}`)
     }
 
     return (
