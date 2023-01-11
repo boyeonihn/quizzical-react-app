@@ -38,6 +38,9 @@ function App() {
     return array; 
   }
   
+  // he library that correctly displays special characters
+  const he = require('he'); 
+  
   function createQuestionUnit(){
     const questionsDataCleaned = questionsJSONData.map( question => {
       const answersArray = [...question.incorrect_answers, question.correct_answer];
@@ -46,13 +49,13 @@ function App() {
 
       for (let i = 0; i < shuffledAnswers.length; i++) {
           choicesArray.push({
-              choice: shuffledAnswers[i]
+              choice: he.decode(shuffledAnswers[i])
           })
       }
 
       return {
-        targetQuestion: question.question,
-        correctAnswer: question.correct_answer,
+        targetQuestion: he.decode(question.question),
+        correctAnswer: he.decode(question.correct_answer),
         allAnswerChoices: choicesArray
       }
     });

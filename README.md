@@ -1,6 +1,6 @@
 # Quizzical React App
 ## About the Project
-**Link to project:** https://glowing-moonbeam-1668fc.netlify.app/
+**Link to project:** https://zippy-sfogliatella-8e3383.netlify.app/
 
 - A Quizzical Web App that presents 5 multiple-choice trivia questions on Mythology that range in terms of difficulty (easy, medium, hard). 
 - This was the final solo project required to complete as part of Scrimba's [React course](https://scrimba.com/learn/learnreact). A Figma design file was provided to present the design and functional requirements of the app, and the app was created from scratch.
@@ -15,8 +15,8 @@ I built this Quizzical web app by utilizing the [Open Trivia Database API](https
 - Upon submitting the answers, the web app presents questions that were answered correctly and incorrectly 
 
 ## Lessons Learned:
-### Manipulating the data received from the Open Trivia Database API:
-- The original data received from the API contained special characters such as ?, &, " that were not displaying correctly upon App rendering. Upon some browsing and searching on the internet, 
+### Manipulating the data received from the Open Trivia Database API
+- The original data received from the API contained special characters such as ?, &, " that were not displaying correctly upon App rendering. Upon some browsing and searching on the internet, I found a HTML decoder library that prevents this error from taking place. 
 - Furthermore, the API data was formatted so that each question had a 'correct_answer' and 'incorrect_answers' property. In order to prevent all the questions from having the first option as the same answer (i.e. all the questions' correct answer being option A), I completed two steps. Firstly, I combined the 'correct_answer' and 'incorrect_answers' values in one array. Then, utilizing a shuffle function, I made sure each question had a different shuffled order of answer choices. 
 
 ### Other lessons learned
@@ -26,6 +26,7 @@ I built this Quizzical web app by utilizing the [Open Trivia Database API](https
 ## Optimizations
 Once I have more time beyond my current projects, I would like to work on the following to optimize my app: 
 - Make the overall design more responsive across different browser devices
+- I am currently still working on having the score of questions answered correctly being rendered 
 
 
 ## Examples:
