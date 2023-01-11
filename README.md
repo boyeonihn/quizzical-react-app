@@ -27,6 +27,7 @@ I built this Quizzical web app by utilizing the [Open Trivia Database API](https
 Once I have more time beyond my current projects, I would like to work on the following to optimize my app: 
 - Make the overall design more responsive across different browser devices
 - I am currently still working on having the score of questions answered correctly being rendered 
+- Include a message for the users such as "loading now.." when the fetch request to the API is taking place (currently, the screen is blank as this is happening)
 
 
 ## Examples:
